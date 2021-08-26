@@ -1,5 +1,6 @@
 import pandas as pd
 import request
+from pprint import pprint
 
 
 def treatment(artist_id, artist_name):
@@ -10,10 +11,10 @@ def treatment(artist_id, artist_name):
         element['main_artist'] = artist_name
         element['related_artist'] = element['name']
 
-        # TODO: loop de requests utilizando o id dos artistas relacionados
+        # TODO: loop de service utilizando o id dos artistas relacionados
         [element.pop(k) for k in['id', 'name']]
 
-        print(element)
+        pprint(element)
 
     df = pd.DataFrame(json)
     return df
