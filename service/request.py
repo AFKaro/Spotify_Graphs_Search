@@ -1,5 +1,5 @@
+from domain.artist import Artist
 from spotipy.oauth2 import SpotifyClientCredentials
-#from artist import artist
 import spotipy
 import json
 
@@ -10,7 +10,10 @@ __client_credentials_manager__ = SpotifyClientCredentials(client_id=__client_id_
 __sp__ = spotipy.Spotify(client_credentials_manager=__client_credentials_manager__)
 
 
-def get_related_artists(artist):
-    """This method find an artist in spotifi"""
-    return __sp__.artist_related_artists(artist)
+def related_artists_payload(artist_id) -> json:
+    """This method find an artist in spotify"""
+    return __sp__.artist_related_artists(artist_id=artist_id)
 
+def artist_payload(name:str) -> json:
+    """return a json with artist"""
+    return __sp__.search(q=name, type="artist", limit=1)
